@@ -3,6 +3,7 @@ import { useState } from "react";
 
 
 export default function Order() {
+  // Hook: [currentStateValue, functionToUpdateState] = useState(initialStateValue)
   const [pizzaType, setPizzaType] = useState("pepperoni");
   const [pizzaSize, setPizzaSize] = useState("M");
 
