@@ -2,17 +2,26 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { createLazyFileRoute } from "@tanstack/react-router";
 import getPastOrders from "../api/getPastOrders";
-
 import getPastOrder from "../api/getPastOrder";
 import Modal from "../components/Modal";
+import ErrorBoundary from "../components/ErrorBoundary";
+
+
+export const Route = createLazyFileRoute("/pastorders")({
+  component: ErrorBoundaryWrappedPastOrderRoutes,
+});
+
+function ErrorBoundaryWrappedPastOrderRoutes() {
+  return (
+    <ErrorBoundary>
+      <PastOrdersRoute />
+    </ErrorBoundary>
+  );
+}
 
 const intl = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
-});
-
-export const Route = createLazyFileRoute("/pastorders")({
-  component: PastOrdersRoute,
 });
 
 function PastOrdersRoute() {
